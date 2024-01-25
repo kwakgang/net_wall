@@ -1,5 +1,5 @@
 #pragma once
-#if WIN32
+#if defined(_WIN32) || defined(_WIN64)
 #define NET_WALL_CALL __stdcall
 #ifdef NET_WALL_BUILD_MODE
 #define NET_WALL_API __declspec(dllexport)
@@ -11,7 +11,7 @@
 #include <netfw.h>
 #include <netlistmgr.h>
 #pragma comment(lib,"ole32.lib")
-#endif
+#endif	// #if defined(_WIN32) || defined(_WIN64)
 #define PERMISSION_ERROR_MSG "Admin permission not guranted/ Run In Admin mode"
 namespace net_wall {
 	enum  FWProfile :char {
@@ -53,7 +53,7 @@ namespace net_wall {
 
 		FWProfile NET_WALL_API NET_WALL_CALL GetProfile(net_wall*);
 
-#if WIN32 
+#if defined(_WIN32) || defined(_WIN64)
 		bool NET_WALL_API NET_WALL_CALL IsBlockAllInboundTraffic(net_wall*);
 		void NET_WALL_API NET_WALL_CALL SetBlockAllInboundTraffic(net_wall*, bool)noexcept(false);
 
@@ -120,6 +120,6 @@ namespace net_wall {
 
 		FWProfile NET_WALL_API NET_WALL_CALL GetProfile(net_wall_rule*);
 		void NET_WALL_API NET_WALL_CALL SetProfile(net_wall_rule*, char)noexcept(false);
-#endif
+#endif	// #if defined(_WIN32) || defined(_WIN64)
 	}
 }

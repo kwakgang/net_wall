@@ -3,7 +3,7 @@
 #include <comutil.h>
 #pragma comment(lib,"comsuppw.lib")
 namespace net_wall {
-#if WIN32
+#if defined(_WIN32) || defined(_WIN64)
 	struct net_wall_win32 :net_wall {
 		FWProfile profile;
 		INetFwPolicy2* pNetFwPolicy2;
@@ -239,7 +239,7 @@ namespace net_wall {
 		net_wall_win32* wall = (net_wall_win32*)wall_glob;
 		return wall->profile;
 	}
-#if WIN32 
+#if defined(_WIN32) || defined(_WIN64)
 
 
 	bool NET_WALL_API NET_WALL_CALL IsBlockAllInboundTraffic(net_wall* wall_glob) {
